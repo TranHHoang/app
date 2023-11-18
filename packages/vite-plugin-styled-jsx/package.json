@@ -1,0 +1,34 @@
+{
+  "name": "@app/vite-plugin-styled-jsx",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "*.d.ts",
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/template": "^7.22.15",
+    "@babel/types": "^7.23.4",
+    "merge-source-map": "^1.1.0",
+    "postcss": "^8.4.31",
+    "postcss-nesting": "^12.0.1",
+    "postcss-selector-parser": "^6.0.13"
+  },
+  "devDependencies": {
+    "solid-js": "^1.8.6",
+    "vite": "^5.0.2"
+  },
+  "peerDependencies": {
+    "vite": "^5",
+    "solid-js": "^1"
+  }
+}

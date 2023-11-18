@@ -1,0 +1,9 @@
+# Ignore all
+/**/*.* 
+# Don't ignore specific extensions
+!apps/**/*.ts
+!apps/**/*.tsx
+!packages/**/*.ts
+!packages/**/*.tsx
+!packages/**/*.css
+!*.config.*

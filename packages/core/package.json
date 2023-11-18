@@ -1,0 +1,29 @@
+{
+  "name": "@app/core",
+  "version": "0.0.1",
+  "type": "module",
+  "module": "dist/index",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "stylelint .",
+    "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "postinstall": "vite build"
+  },
+  "devDependencies": {
+    "@app/vite-plugin-styled-jsx": "workspace:^",
+    "@iconify-json/ph": "^1.1.6",
+    "clsx": "^2.0.0",
+    "postcss-styled-jsx": "^1.0.1",
+    "solid-js": "^1.8.6",
+    "stylelint": "next",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-config-standard": "^34.0.0",
+    "unplugin-icons": "^0.17.4",
+    "vite": "^5.0.2",
+    "vite-plugin-dts": "^3.6.3",
+    "vite-plugin-solid": "^2.7.2",
+    "vite-tsconfig-paths": "^4.2.1"
+  }
+}
