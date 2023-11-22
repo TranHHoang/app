@@ -66,6 +66,7 @@ export default [
       ...tsPlugin.configs["stylistic-type-checked"].rules,
       "@typescript-eslint/explicit-function-return-type": "error",
       "@typescript-eslint/ban-ts-comment": ["error", { "ts-ignore": "allow-with-description" }],
+      "@typescript-eslint/no-non-null-assertion": "off",
 
       // import
       ...importPlugin.configs.recommended.rules,

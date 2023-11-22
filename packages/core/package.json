@@ -11,6 +11,10 @@
     "build": "vite build",
     "postinstall": "vite build"
   },
+  "dependencies": {
+    "@tiptap/core": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12"
+  },
   "devDependencies": {
     "@app/vite-plugin-styled-jsx": "workspace:^",
     "@iconify-json/ph": "^1.1.6",
