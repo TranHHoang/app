@@ -2,7 +2,11 @@ import { Component, createEffect, onCleanup } from "solid-js";
 import { Editor } from "@tiptap/core";
 import { useEditorExtensions } from "../model/extensionStore";
 
-export const EditorArea: Component = () => {
+interface EditorAreaProps {
+  onEditorChange: (e: Editor | null) => void;
+}
+
+export const EditorArea: Component<EditorAreaProps> = (props) => {
   let ref: HTMLDivElement | undefined;
   const { extensions } = useEditorExtensions();
 
@@ -12,8 +16,10 @@ export const EditorArea: Component = () => {
       extensions: extensions(),
       content: "This is content",
     });
+    props.onEditorChange(editor);
 
     onCleanup(() => {
+      props.onEditorChange(null);
       editor.destroy();
     });
   });

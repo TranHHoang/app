@@ -1,6 +1,7 @@
 import { Plugin } from "vite";
 import solid from "vite-plugin-solid";
 import styledJsx from "@app/vite-plugin-styled-jsx";
+import icons from "unplugin-icons/vite";
 
 const path = "../src/";
 
@@ -21,8 +22,7 @@ function hmrAliasPlugin(): Plugin {
   };
 }
 
-export default function plugins({ mode }: { mode: string }): Plugin[] {
-  console.log(mode);
-  if (mode === "development") return [hmrAliasPlugin(), solid(), styledJsx()];
+export default function plugins({ mode }: { mode: string }): (Plugin | Plugin[])[] {
+  if (mode === "development") return [hmrAliasPlugin(), solid(), styledJsx(), icons({ compiler: "solid" })];
   return [];
 }
