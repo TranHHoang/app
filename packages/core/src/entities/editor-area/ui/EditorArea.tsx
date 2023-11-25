@@ -1,9 +1,10 @@
-import { Component, createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { Component, createEffect, onCleanup, onMount } from "solid-js";
 import { Editor } from "@tiptap/core";
 import { usePlatformConfigs } from "~/shared/lib";
 import { useEditorExtensions } from "../model/extensionStore";
 
 interface EditorAreaProps {
+  editor: Editor | null;
   onEditorChange: (e: Editor | null) => void;
 }
 
@@ -11,23 +12,20 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
   let ref: HTMLDivElement | undefined;
   let fileName: string | null = null;
 
-  const [editor, setEditor] = createSignal<Editor | null>(null);
-
   const { extensions } = useEditorExtensions();
   const { openTextFile, saveTextFile } = usePlatformConfigs();
 
   async function handleKeydown(e: KeyboardEvent): Promise<void> {
-    const currentEditor = editor();
-    if (!e.ctrlKey || !currentEditor) return;
+    if (!e.ctrlKey || !props.editor) return;
 
     if (e.key === "o") {
       const file = await openTextFile();
       if (file) {
         fileName = file.name;
-        currentEditor.commands.setContent(file.content);
+        props.editor.commands.setContent(file.content);
       }
     } else if (e.key === "s") {
-      fileName = await saveTextFile(fileName, currentEditor.getHTML().trim());
+      fileName = await saveTextFile(fileName, props.editor.getHTML().trim());
     }
   }
 
@@ -45,11 +43,9 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
       content: "This is content",
     });
     props.onEditorChange(editor);
-    setEditor(editor);
 
     onCleanup(() => {
       props.onEditorChange(null);
-      setEditor(null);
       editor.destroy();
     });
   });

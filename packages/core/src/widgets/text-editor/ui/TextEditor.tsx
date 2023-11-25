@@ -29,7 +29,7 @@ export const TextEditor: Component = () => {
   return (
     <>
       <Show when={showEditorArea()}>
-        <EditorArea onEditorChange={setEditor} />
+        <EditorArea editor={editor()} onEditorChange={setEditor} />
       </Show>
       <FormatTextMenu editor={editor()} ref={(el) => (menuRefs.formatTextMenu = el)} />
     </>
