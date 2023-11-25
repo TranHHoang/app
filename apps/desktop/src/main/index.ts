@@ -2,6 +2,7 @@
 import { app, nativeTheme } from "electron";
 import { electronApp, optimizer } from "@electron-toolkit/utils";
 import "./securityRestrictions";
+import { registerIpcHandles } from "./ipc";
 import { restoreOrCreateWindow } from "./mainWindow";
 
 // Set default theme to dark
@@ -24,6 +25,7 @@ app
   .then(() => {
     // Set app user model id for windows
     electronApp.setAppUserModelId("com.electron");
+    registerIpcHandles();
 
     // Default open or close DevTools by F12 in development
     // and ignore CommandOrControl + R in production.

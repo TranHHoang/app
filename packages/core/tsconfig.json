@@ -8,7 +8,8 @@
       "DOM.Iterable"
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "unplugin-icons/types/solid",
     ],
     "composite": false,
     "jsx": "preserve",
@@ -25,6 +26,6 @@
   },
   "include": [
     "src/**/*",
-    "vite-plugin/index.ts"
+    "vite-plugin/index.ts",
   ],
 }

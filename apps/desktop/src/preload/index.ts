@@ -1,14 +1,16 @@
-import { contextBridge } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
+import { DIALOG_OPEN_TEXT_FILE, DIALOG_SAVE_TEXT_FILE } from "../shared/consts";
+import { ElectronApi } from "../shared/types";
 
 // Custom APIs for renderer
-const api = {};
+const electronApi: ElectronApi = {
+  openTextFile: () => ipcRenderer.invoke(DIALOG_OPEN_TEXT_FILE),
+  saveTextFile: (name, content) => ipcRenderer.invoke(DIALOG_SAVE_TEXT_FILE, name, content),
+};
 
-// Use `contextBridge` APIs to expose Electron APIs to
-// renderer only if context isolation is enabled, otherwise
-// just add to the DOM global.
 if (process.contextIsolated) {
   try {
-    contextBridge.exposeInMainWorld("api", api);
+    contextBridge.exposeInMainWorld("electronApi", electronApi);
   } catch (error) {
     console.error(error);
   }

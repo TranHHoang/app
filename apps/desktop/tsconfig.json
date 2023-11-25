@@ -4,10 +4,12 @@
     "composite": true,
     "types": [
       "node",
-      "electron-vite/node"
+      "electron-vite/node",
+      "vite/client"
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/renderer/env.d.ts"
   ]
 }

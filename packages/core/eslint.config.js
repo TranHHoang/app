@@ -82,7 +82,7 @@ export default {
       ],
     },
     settings: {
-      // eslint-plugin-boundaries
+      // boundaries
       "boundaries/ignore": [`${FOLDER}/src/index.tsx`],
       "boundaries/elements": LAYERS.map((type) => ({
         type,

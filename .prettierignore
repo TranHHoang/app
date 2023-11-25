@@ -6,4 +6,4 @@
 !packages/**/*.ts
 !packages/**/*.tsx
 !packages/**/*.css
-!*.config.*
+!/**/*.config.*
