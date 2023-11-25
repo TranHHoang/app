@@ -76,6 +76,7 @@ export default [
           },
         },
       ],
+      "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
 
       // import
       ...importPlugin.configs.recommended.rules,

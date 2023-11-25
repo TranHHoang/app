@@ -1,12 +1,11 @@
-import { Extension } from "@tiptap/core";
-import { BubbleMenu, BubbleMenuOptions } from "@tiptap/extension-bubble-menu";
+import { Extension, isNodeSelection } from "@tiptap/core";
+import { BubbleMenu } from "@tiptap/extension-bubble-menu";
 import { Underline } from "@tiptap/extension-underline";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { starterkitDefaultOptions } from "~/entities/editor-area";
 
 interface FormatTextMenuOptions {
   element: HTMLElement | null;
-  shouldShow: BubbleMenuOptions["shouldShow"];
 }
 
 export const FormatTextMenuExt = Extension.create<FormatTextMenuOptions>({
@@ -15,7 +14,6 @@ export const FormatTextMenuExt = Extension.create<FormatTextMenuOptions>({
   addOptions() {
     return {
       element: null,
-      shouldShow: null,
     };
   },
 
@@ -37,7 +35,10 @@ export const FormatTextMenuExt = Extension.create<FormatTextMenuOptions>({
       BubbleMenu.configure({
         pluginKey: "formatTextMenu/bubbleMenu",
         element: this.options.element,
-        shouldShow: this.options.shouldShow,
+        shouldShow: ({ state }) => {
+          const { selection } = state;
+          return !selection.empty && !isNodeSelection(selection);
+        },
       }),
     ];
   },
