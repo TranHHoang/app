@@ -1,0 +1,26 @@
+name: Validation
+on: [workflow_call]
+
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: "bash"
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm typecheck
+      - run: pnpm format

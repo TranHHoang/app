@@ -1,0 +1,39 @@
+# This workflow is the entry point for all CI processes.
+# It is from here that all other workflows are launched.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/ci.yml"
+      - "!.github/workflows/validation.yml"
+      - "!.github/workflows/build.yml"
+      - "**.md"
+      - .editorconfig
+      - .gitignore
+      - ".idea/**"
+      - ".vscode/**"
+  pull_request:
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/ci.yml"
+      - "!.github/workflows/validation.yml"
+      - "!.github/workflows/build.yml"
+      - "**.md"
+      - .editorconfig
+      - .gitignore
+      - ".idea/**"
+      - ".vscode/**"
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validation:
+    uses: ./.github/workflows/validation.yml
+  build:
+    needs: [validation]
+    uses: ./.github/workflows/build.yml
