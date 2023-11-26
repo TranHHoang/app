@@ -10,10 +10,12 @@ export function registerIpcHandles(): void {
 
 async function handleOpenTextFile(): ReturnType<ElectronApi["openTextFile"]> {
   const { filePaths } = await dialog.showOpenDialog({ properties: ["openFile"] });
-  if (!filePaths[0]) return null;
+  const [filePath] = filePaths;
 
-  const content = await readFile(filePaths[0], { encoding: "utf8" });
-  return { name: filePaths[0], content };
+  if (!filePath) return null;
+
+  const content = await readFile(filePath, { encoding: "utf8" });
+  return { name: filePath, content };
 }
 
 async function handleSaveTextFile(name: string | null, content: string): ReturnType<ElectronApi["saveTextFile"]> {

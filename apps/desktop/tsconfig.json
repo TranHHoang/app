@@ -3,13 +3,11 @@
   "compilerOptions": {
     "composite": true,
     "types": [
-      "node",
+      "vite/client",
       "electron-vite/node",
-      "vite/client"
     ]
   },
   "include": [
     "src/**/*",
-    "src/renderer/env.d.ts"
   ]
 }

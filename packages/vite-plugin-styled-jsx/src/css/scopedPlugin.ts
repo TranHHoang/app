@@ -18,7 +18,7 @@ const scopedPlugin: PluginCreator<string> = (id = "") => {
     AtRule(node): void {
       if (/-?keyframes$/.test(node.name) && !node.params.endsWith(`-${shortId}`)) {
         // register keyframes
-        keyframes[node.params] = node.params = node.params + "-" + shortId;
+        keyframes[node.params] = node.params = `${node.params}-${shortId}`;
       }
     },
     OnceExit(root): void {
@@ -44,10 +44,9 @@ const scopedPlugin: PluginCreator<string> = (id = "") => {
                 const i = vals.findIndex((val) => keyframes[val]);
                 if (i === -1) {
                   return v;
-                } else {
-                  vals.splice(i, 1, keyframes[vals[i]!]!);
-                  return vals.join(" ");
                 }
+                vals.splice(i, 1, keyframes[vals[i]!]!);
+                return vals.join(" ");
               })
               .join(",");
           }
@@ -141,7 +140,7 @@ function rewriteSelector(
   }
 
   if (shouldInject) {
-    const idToAdd = slotted ? id + "-s" : id;
+    const idToAdd = slotted ? `${id}-s` : id;
     selector.insertAfter(
       // If node is null it means we need to inject [id] at the start
       // insertAfter can handle `null` here

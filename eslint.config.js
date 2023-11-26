@@ -40,7 +40,7 @@ export default [
     },
     rules: {
       // eslint
-      "no-unused-vars": "off",
+      "no-unused-vars": "off", // @typescript-eslint
       "no-console": ["warn", { allow: ["warn", "error"] }],
       "no-restricted-imports": [
         "error",
@@ -52,6 +52,15 @@ export default [
           ],
         },
       ],
+      eqeqeq: ["error", "smart"],
+      "prefer-const": "warn",
+      "no-else-return": "warn",
+      "no-useless-return": "warn",
+      "no-var": "warn",
+      "object-shorthand": ["error", "methods"],
+      "prefer-arrow-callback": "error",
+      "prefer-template": "warn",
+      "no-param-reassign": ["warn", { props: false }],
 
       // Unicorn
       ...unicornPlugin.configs.recommended.rules,
@@ -77,6 +86,7 @@ export default [
         },
       ],
       "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
+      "@typescript-eslint/member-ordering": "error",
 
       // import
       ...importPlugin.configs.recommended.rules,
