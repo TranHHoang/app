@@ -1,19 +1,22 @@
 import globals from "globals";
+import { join, relative, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import process from "node:process";
 
-const FOLDER = "apps/desktop";
+const FOLDER = relative(process.cwd(), dirname(fileURLToPath(import.meta.url)));
 
 export default {
-  ignores: [`${FOLDER}/out/`, `${FOLDER}/dist/`],
+  ignores: [],
   /** @type {import("eslint").Linter.FlatConfig[]} */
   configs: [
     {
-      files: [`${FOLDER}/**/*.ts`],
+      files: [join(FOLDER, "**/*.ts")],
       languageOptions: {
         globals: globals.node,
       },
     },
     {
-      files: [`${FOLDER}/src/renderer/*.ts`, `${FOLDER}/src/preload/*.ts`],
+      files: [join(FOLDER, "src/renderer/*.ts"), join(FOLDER, "src/preload/*.ts")],
       languageOptions: {
         globals: globals.browser,
       },

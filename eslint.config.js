@@ -1,11 +1,11 @@
-import js from "@eslint/js";
 import prettierConfig from "eslint-config-prettier";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
-import tsParser from "@typescript-eslint/parser";
-import globals from "globals";
 import importPlugin from "eslint-plugin-import";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import unicornPlugin from "eslint-plugin-unicorn";
+import globals from "globals";
+import js from "@eslint/js";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 import appDesktop from "./apps/desktop/eslint.config.mjs";
 import packageCore from "./packages/core/eslint.config.js";
 import packageVitePluginStyledJsx from "./packages/vite-plugin-styled-jsx/eslint.config.js";
@@ -17,6 +17,8 @@ export default [
       "**/node_modules/*",
       "**/*.config.*",
       "**/*.d.ts",
+      "**/dist/*",
+      "**/out/*",
       ...appDesktop.ignores,
       ...packageCore.ignores,
       ...packageVitePluginStyledJsx.ignores,
@@ -87,6 +89,7 @@ export default [
       ],
       "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
       "@typescript-eslint/member-ordering": "error",
+      "@typescript-eslint/no-unsafe-argument": "off",
 
       // import
       ...importPlugin.configs.recommended.rules,
@@ -128,7 +131,7 @@ export default [
       },
       "import/resolver": {
         typescript: {
-          project: ["apps/*/tsconfig.json", "packages/*/tsconfig.json"],
+          project: ["**/tsconfig.json"],
         },
       },
     },

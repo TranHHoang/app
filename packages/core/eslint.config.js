@@ -1,16 +1,20 @@
-import solidPlugin from "eslint-plugin-solid";
 import boundriesPlugin from "eslint-plugin-boundaries";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
+import solidPlugin from "eslint-plugin-solid";
 import globals from "globals";
+import { dirname, join, relative } from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
 
-const FOLDER = "packages/core";
+const FOLDER = relative(process.cwd(), dirname(fileURLToPath(import.meta.url)));
+
 const LAYERS = ["assets", "shared", "entities", "features", "widgets", "pages", "app"];
 
 export default {
-  ignores: [`${FOLDER}/src/assets/`, `${FOLDER}/dist/`, `${FOLDER}/vite-plugin/`],
+  ignores: [join(FOLDER, "src/assets/"), `vite-plugin/`],
   /** @type {import("eslint").Linter.FlatConfig} */
   configs: {
-    files: [`${FOLDER}/src/**/*.{ts,tsx}`],
+    files: [join(FOLDER, "src/**/*.{ts,tsx}")],
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
@@ -83,10 +87,10 @@ export default {
     },
     settings: {
       // boundaries
-      "boundaries/ignore": [`${FOLDER}/src/index.tsx`],
+      "boundaries/ignore": [join(FOLDER, "src/index.tsx")],
       "boundaries/elements": LAYERS.map((type) => ({
         type,
-        pattern: `${FOLDER}/src/${type}`,
+        pattern: join(FOLDER, `src/${type}`),
       })),
     },
   },

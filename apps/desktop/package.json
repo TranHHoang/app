@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
+    "lint": "eslint . -c ../../eslint.config.js",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore",
     "build": "electron-vite build && electron-builder --config --dir",
     "postinstall": "electron-builder install-app-deps",
     "start": "electron-vite preview",

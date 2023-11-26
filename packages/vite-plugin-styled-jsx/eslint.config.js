@@ -1,18 +1,17 @@
 import globals from "globals";
+import { dirname, join, relative } from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
 
-const FOLDER = "packages/vite-plugin-styled-jsx";
+const FOLDER = relative(process.cwd(), dirname(fileURLToPath(import.meta.url)));
 
 export default {
-  ignores: [`${FOLDER}/dist/`],
+  ignores: [join(FOLDER, "**/scopedPlugin.ts")],
   /** @type {import("eslint").Linter.FlatConfig} */
   configs: {
-    files: [`${FOLDER}/**/*.ts`],
+    files: [join(FOLDER, "**/*.ts")],
     languageOptions: {
       globals: globals.node,
-    },
-    rules: {
-      "@typescript-eslint/no-unsafe-argument": "off",
-      "@typescript-eslint/no-non-null-assertion": "off",
     },
   },
 };

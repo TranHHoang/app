@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "turbo lint",
+    "lint:prettier": "turbo lint:prettier",
     "typecheck": "turbo typecheck",
     "build": "turbo build",
     "build:win": "pnpm -F @app/desktop build:win",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^8.54.0",
+    "@types/eslint": "^8.44.7",
     "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
     "@typescript-eslint/parser": "^6.12.0",
@@ -22,7 +23,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-boundaries": "^3.4.1",
-    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-solid": "^0.13.0",
     "eslint-plugin-unicorn": "^49.0.0",

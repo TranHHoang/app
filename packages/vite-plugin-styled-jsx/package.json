@@ -10,6 +10,8 @@
     "types"
   ],
   "scripts": {
+    "lint": "eslint . -c ../../eslint.config.js",
+    "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
     "build": "tsc -p ./tsconfig.json"
   },

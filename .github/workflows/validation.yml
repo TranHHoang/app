@@ -22,5 +22,9 @@ jobs:
         with:
           cache: "pnpm"
       - run: pnpm install
-      - run: pnpm typecheck
-      - run: pnpm format
+      - name: Typechecking
+        run: pnpm typecheck
+      - name: ESLint
+        run: pnpm lint
+      - name: Prettier
+        run: pnpm lint:prettier

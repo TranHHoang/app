@@ -20,7 +20,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["vite-plugin-solid", "vite", "@app/vite-plugin-styled-jsx", "unplugin-icons/vite"],
       output: {
-        entryFileNames: "[name]",
+        entryFileNames: "[name].js",
         intro(chunkInfo) {
           if (chunkInfo.name === "index") {
             return `import "./style.css"`;

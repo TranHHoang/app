@@ -1,5 +1,4 @@
 // From: https://github.com/vuejs/core/blob/HEAD/packages/compiler-sfc/src/style/pluginScoped.ts
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unnecessary-condition, import/no-named-as-default-member */
 import { AtRule, PluginCreator, Rule } from "postcss";
 import selectorParser from "postcss-selector-parser";
 
