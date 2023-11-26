@@ -6,14 +6,13 @@ import { menuIconItems } from "../model/menuItems";
 import { MenuButton } from "./MenuButton";
 
 interface FormatTextMenuProps {
-  editor: Editor | null;
-  ref: (el: HTMLElement | undefined) => void;
+  editor: () => Editor | null;
 }
 
 export const FormatTextMenu: Component<FormatTextMenuProps> = (props) => {
   return (
-    <FloatingMenu component="div" ref={props.ref}>
-      <Show when={props.editor}>
+    <FloatingMenu component="div">
+      <Show when={props.editor()}>
         {(editor) => (
           <For each={menuIconItems}>
             {(item) => (
