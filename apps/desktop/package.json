@@ -4,12 +4,12 @@
   "main": "./out/main/index.js",
   "private": true,
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
+    "build": "electron-vite build && electron-builder --config --dir",
+    "postinstall": "electron-builder install-app-deps",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "compile": "electron-vite build",
-    "build": "electron-vite build && electron-builder --config --dir",
     "release": "electron-vite build && electron-builder --config"
   },
   "dependencies": {

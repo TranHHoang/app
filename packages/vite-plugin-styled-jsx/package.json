@@ -10,6 +10,7 @@
     "types"
   ],
   "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
     "build": "tsc -p ./tsconfig.json"
   },
   "keywords": [],

@@ -7,9 +7,7 @@
   "scripts": {
     "lint": "stylelint .",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
-    "dev": "vite build --watch",
-    "build": "vite build",
-    "postinstall": "vite build"
+    "build": "vite build"
   },
   "dependencies": {
     "@kobalte/core": "^0.11.2",
