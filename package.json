@@ -4,14 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "turbo build --filter=!@app/desktop",
     "lint": "turbo lint",
     "lint:prettier": "turbo lint:prettier",
     "typecheck": "turbo typecheck",
     "build": "turbo build",
-    "build:win": "pnpm -F @app/desktop build:win",
-    "build:linux": "pnpm -F @app/desktop build:linux",
-    "build:macos": "pnpm -F @app/desktop build:macos",
-    "dev": "pnpm -F desktop dev"
+    "dev": "turbo dev"
   },
   "devDependencies": {
     "@eslint/js": "^8.54.0",

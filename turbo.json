@@ -13,6 +13,10 @@
     },
     "lint:prettier": {
       "dependsOn": ["build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
     }
   }
 }
