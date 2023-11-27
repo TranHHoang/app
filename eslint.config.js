@@ -59,7 +59,7 @@ export default [
       "no-else-return": "warn",
       "no-useless-return": "warn",
       "no-var": "warn",
-      "object-shorthand": ["error", "methods"],
+      "object-shorthand": "warn",
       "prefer-arrow-callback": "error",
       "prefer-template": "warn",
       "no-param-reassign": ["warn", { props: false }],
