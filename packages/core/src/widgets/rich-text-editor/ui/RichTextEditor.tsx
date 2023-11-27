@@ -3,7 +3,7 @@ import { Editor } from "@tiptap/core";
 import { EditorArea, useEditorExtensions } from "~/entities/editor-area";
 import { FormatTextMenuExt } from "~/features/format-text";
 
-export const TextEditor: Component = () => {
+export const RichTextEditor: Component = () => {
   const [editor, setEditor] = createSignal<Editor | null>(null);
   const [showEditorArea, setShowEditorArea] = createSignal(false);
 

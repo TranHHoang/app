@@ -1,7 +1,7 @@
 import { Component } from "solid-js";
 import { createPlatformConfigs, PlatformConfigs, PlatformConfigsCtx } from "~/shared/lib";
 import { createEditorExtensions, EditorExtensionsCtx } from "~/entities/editor-area";
-import { TextEditor } from "~/widgets/text-editor";
+import { RichTextEditor } from "~/widgets/rich-text-editor";
 
 interface AppProps {
   initialPlatformConfigs: Partial<PlatformConfigs>;
@@ -14,7 +14,7 @@ export const App: Component<AppProps> = (props) => {
   return (
     <PlatformConfigsCtx.Provider value={platformApi}>
       <EditorExtensionsCtx.Provider value={extensions}>
-        <TextEditor />
+        <RichTextEditor />
       </EditorExtensionsCtx.Provider>
     </PlatformConfigsCtx.Provider>
   );
