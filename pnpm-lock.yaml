@@ -117,6 +117,9 @@ importers:
       '@tiptap/suggestion':
         specifier: ^2.1.12
         version: 2.1.12(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
     devDependencies:
       '@app/vite-plugin-styled-jsx':
         specifier: workspace:^
@@ -124,9 +127,6 @@ importers:
       '@iconify-json/ph':
         specifier: ^1.1.6
         version: 1.1.6
-      clsx:
-        specifier: ^2.0.0
-        version: 2.0.0
       postcss-styled-jsx:
         specifier: ^1.0.1
         version: 1.0.1(postcss-syntax@0.36.2)(postcss@8.4.31)
@@ -2663,7 +2663,7 @@ packages:
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
-    dev: true
+    dev: false
 
   /color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}

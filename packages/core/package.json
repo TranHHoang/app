@@ -17,12 +17,12 @@
     "@tiptap/extension-bubble-menu": "^2.1.12",
     "@tiptap/extension-underline": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
-    "@tiptap/suggestion": "^2.1.12"
+    "@tiptap/suggestion": "^2.1.12",
+    "clsx": "^2.0.0"
   },
   "devDependencies": {
     "@app/vite-plugin-styled-jsx": "workspace:^",
     "@iconify-json/ph": "^1.1.6",
-    "clsx": "^2.0.0",
     "postcss-styled-jsx": "^1.0.1",
     "solid-js": "^1.8.6",
     "stylelint": "next",
