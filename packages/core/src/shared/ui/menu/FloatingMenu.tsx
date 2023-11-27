@@ -1,9 +1,10 @@
 import { Dynamic } from "solid-js/web";
+import cn from "clsx";
 
 export const FloatingMenu: typeof Dynamic = (props) => {
   return (
     <>
-      <Dynamic {...props} component={props.component} class="FloatingMenu" />
+      <Dynamic {...props} component={props.component} class={cn("FloatingMenu", props.class)} />
       <style jsx>{`
         .FloatingMenu {
           display: flex;
