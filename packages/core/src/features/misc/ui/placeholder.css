@@ -1,0 +1,7 @@
+:where(.Editor .tiptap) *.is-empty::before {
+  float: left;
+  opacity: 0.5;
+  height: 0;
+  pointer-events: none;
+  content: attr(data-placeholder);
+}
