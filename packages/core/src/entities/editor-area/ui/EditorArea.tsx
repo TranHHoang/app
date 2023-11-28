@@ -72,7 +72,6 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
           }
 
           :where(.ProseMirror:not(.dragging)) .ProseMirror-selectednode {
-            border-radius: var(--radius);
             background-color: var(--color-highlight);
           }
         }

@@ -26,7 +26,7 @@ export const MenuButton: Component<MenuButtonProps> = (props) => {
             display: flex;
             align-items: center;
             opacity: 0.5;
-            border-radius: 4px;
+            border-radius: var(--radius);
             font-size: 0.8rem;
           }
 

@@ -1,0 +1,18 @@
+:where(.Editor .tiptap) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  blockquote {
+    border-left: 4px solid white;
+    padding: 2px 0 2px 14px;
+  }
+}
