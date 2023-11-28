@@ -3,7 +3,7 @@ import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { Suggestion, SuggestionOptions } from "@tiptap/suggestion";
 import { starterkitDefaultOptions } from "~/entities/editor-area";
 import { MenuItem, menuItems } from "../model/menuItems";
-import { renderMenu } from "./suggestion";
+import { renderMenu } from "./renderMenu";
 import "../ui/tiptap.css";
 
 type SlashMenuOptions = Omit<SuggestionOptions<MenuItem>, "editor">;

@@ -8,7 +8,7 @@ import { InsertBlockMenu } from "../ui/InsertBlockMenu";
 type RenderFnReturnType = ReturnType<NonNullable<SuggestionOptions<MenuItem>["render"]>>;
 
 export function renderMenu(): RenderFnReturnType {
-  let cleanupFn: (() => void) | null = null;
+  let cleanup: (() => void) | null = null;
   let onKeyDownHandler: ((e: KeyboardEvent) => boolean) | null = null;
   const menuEl = document.createElement("div");
 
@@ -19,7 +19,7 @@ export function renderMenu(): RenderFnReturnType {
       document.body.append(menuEl);
 
       setMenuItems(items);
-      cleanupFn = render(
+      cleanup = render(
         () => InsertBlockMenu({ items: menuItems, command, exposeOnKeyDownHandler: (fn) => (onKeyDownHandler = fn) }),
         menuEl
       );
@@ -31,14 +31,14 @@ export function renderMenu(): RenderFnReturnType {
     },
     onKeyDown({ event }) {
       if (event.key === "Escape") {
-        cleanupFn?.();
+        cleanup?.();
         menuEl.remove();
         return true;
       }
       return onKeyDownHandler?.(event) ?? false;
     },
     onExit() {
-      cleanupFn?.();
+      cleanup?.();
       menuEl.remove();
     },
   };
