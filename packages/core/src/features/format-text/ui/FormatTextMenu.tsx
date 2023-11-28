@@ -1,5 +1,4 @@
 import { Component, For } from "solid-js";
-import { Dynamic } from "solid-js/web";
 import { Editor } from "@tiptap/core";
 import { FloatingMenu } from "~/shared/ui/menu";
 import { menuIconItems } from "../model/menuItems";
@@ -14,8 +13,7 @@ export const FormatTextMenu: Component<FormatTextMenuProps> = (props) => {
     <FloatingMenu component="div">
       <For each={menuIconItems}>
         {(item) => (
-          <Dynamic
-            component={MenuButton}
+          <MenuButton
             editor={props.editor}
             name={item.name}
             icon={item.icon}
