@@ -5,6 +5,7 @@
   "module": "dist/index",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "turbo build --filter @app/core",
     "lint": "eslint . -c ../../eslint.config.js && stylelint .",
     "lint:prettier": "prettier -c . --cache --ignore-path=../../.prettierignore",
     "typecheck": "tsc --noEmit -p tsconfig.json --composite false",
