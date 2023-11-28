@@ -75,7 +75,7 @@ export default [
       ...tsPlugin.configs["eslint-recommended"].rules,
       ...tsPlugin.configs["strict-type-checked"].rules,
       ...tsPlugin.configs["stylistic-type-checked"].rules,
-      "@typescript-eslint/explicit-function-return-type": "error",
+      "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
       "@typescript-eslint/ban-ts-comment": ["error", { "ts-ignore": "allow-with-description" }],
       "@typescript-eslint/no-non-null-assertion": "off",
       "@typescript-eslint/no-misused-promises": [

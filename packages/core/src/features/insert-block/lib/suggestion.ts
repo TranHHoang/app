@@ -15,7 +15,7 @@ export function renderMenu(): RenderFnReturnType {
   const [menuItems, setMenuItems] = createSignal<MenuItem[]>([]);
 
   return {
-    onStart({ items, command, clientRect }): void {
+    onStart({ items, command, clientRect }) {
       document.body.append(menuEl);
 
       setMenuItems(items);
@@ -25,11 +25,11 @@ export function renderMenu(): RenderFnReturnType {
       );
       void onChangePosition(menuEl.firstElementChild, clientRect?.());
     },
-    onUpdate({ items, clientRect }): void {
+    onUpdate({ items, clientRect }) {
       setMenuItems(items);
       void onChangePosition(menuEl.firstElementChild, clientRect?.());
     },
-    onKeyDown({ event }): boolean {
+    onKeyDown({ event }) {
       if (event.key === "Escape") {
         cleanupFn?.();
         menuEl.remove();
@@ -37,7 +37,7 @@ export function renderMenu(): RenderFnReturnType {
       }
       return onKeyDownHandler?.(event) ?? false;
     },
-    onExit(): void {
+    onExit() {
       cleanupFn?.();
       menuEl.remove();
     },

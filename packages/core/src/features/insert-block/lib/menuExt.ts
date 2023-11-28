@@ -12,7 +12,7 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
   addOptions() {
     return {
       char: "/",
-      command: ({ editor, range, props }): void => {
+      command: ({ editor, range, props }) => {
         props.onCommand({ editor, range });
       },
     };

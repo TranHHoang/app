@@ -20,7 +20,7 @@ function getFunctionName(functionScope: Scope): string {
 
 function addScopedId(functionScope: Scope, map: WeakMap<Scope, string>): void {
   functionScope.path.traverse({
-    JSXElement(path): void {
+    JSXElement(path) {
       const opening = path.node.openingElement;
 
       if (
@@ -61,7 +61,7 @@ export function styledJsxPlugin(): babel.PluginObj<babel.PluginPass & { opts: { 
   return {
     name: "styled-jsx",
     visitor: {
-      Program(rootPath, state): void {
+      Program(rootPath, state) {
         let genId = 0;
         const fileName = state.file.opts.sourceFileName;
         if (!fileName) return;

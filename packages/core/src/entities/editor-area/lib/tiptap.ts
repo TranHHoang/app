@@ -37,7 +37,7 @@ function createEditorTransaction<T>(editor: Accessor<Editor>, fn: () => T): () =
   });
 
   // eslint-disable-next-line solid/reactivity
-  return (): T => {
+  return () => {
     dep();
     return fn();
   };

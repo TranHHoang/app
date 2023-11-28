@@ -5,7 +5,7 @@ import { PluginCreator } from "postcss";
 const trimPlugin: PluginCreator<{}> = () => {
   return {
     postcssPlugin: "styled-jsx-trim",
-    Once(root): void {
+    Once(root) {
       root.walk(({ type, raws }) => {
         if (type === "rule" || type === "atrule") {
           if (raws.before) raws.before = "\n";

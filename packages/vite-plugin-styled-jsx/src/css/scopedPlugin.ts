@@ -11,16 +11,16 @@ const scopedPlugin: PluginCreator<string> = (id = "") => {
 
   return {
     postcssPlugin: "styled-jsx-scoped",
-    Rule(rule): void {
+    Rule(rule) {
       processRule(id, rule);
     },
-    AtRule(node): void {
+    AtRule(node) {
       if (/-?keyframes$/.test(node.name) && !node.params.endsWith(`-${shortId}`)) {
         // register keyframes
         keyframes[node.params] = node.params = `${node.params}-${shortId}`;
       }
     },
-    OnceExit(root): void {
+    OnceExit(root) {
       if (Object.keys(keyframes).length > 0) {
         // If keyframes are found in this <style>, find and rewrite animation names
         // in declarations.

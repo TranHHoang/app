@@ -52,14 +52,14 @@ export default function styledJsx(): Plugin {
   return {
     name: PLUGIN_NAME,
     enforce: "pre",
-    configureServer(server): void {
+    configureServer(server) {
       devServer = server;
     },
-    resolveId(id): string | undefined {
+    resolveId(id) {
       if (!virtualModFilter(id)) return;
       return `\0${id}`;
     },
-    load(id): string | undefined {
+    load(id) {
       if (id.startsWith(`\0virtual:${PLUGIN_NAME}`)) {
         const fileName = path.parse(id).name;
         return styleMap.get(fileName);
@@ -81,7 +81,7 @@ export default function styledJsx(): Plugin {
 
       return { code: result.code, map: null };
     },
-    configResolved(config): void {
+    configResolved(config) {
       repushPlugin(config.plugins as Plugin[], "styled-jsx", ["solid"]);
     },
   };
