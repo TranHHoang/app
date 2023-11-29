@@ -35,13 +35,7 @@ function BlockDragHandlePlugin(): Plugin {
         mousemove(view, event) {
           if (!view.editable) return;
 
-          const node = nodeAtCoords(
-            {
-              x: event.clientX + 30,
-              y: event.clientY,
-            },
-            ".ProseMirror"
-          );
+          const node = nodeAtCoords({ x: event.clientX + 30, y: event.clientY }, ".ProseMirror");
           if (!(node instanceof Element)) {
             hideHandle();
             return;
