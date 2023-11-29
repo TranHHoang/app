@@ -53,4 +53,9 @@ export const menuItems: MenuItem[] = [
     icon: Icon.Divider,
     onCommand: (props) => runCommand(props, (cmd) => cmd.setHorizontalRule()),
   },
+  {
+    title: "To-do List",
+    icon: Icon.TaskList,
+    onCommand: (props) => runCommand(props, (cmd) => cmd.toggleTaskList()),
+  },
 ];

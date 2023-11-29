@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved, boundaries/no-ignored */
 export { default as TextCode } from "~icons/ph/brackets-square";
+export { default as TaskList } from "~icons/ph/check-square";
 export { default as DragHandle } from "~icons/ph/dots-six-vertical";
 export { default as Divider } from "~icons/ph/dots-three";
 export { default as BulletList } from "~icons/ph/list-bullets";

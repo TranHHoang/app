@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { Suggestion, SuggestionOptions } from "@tiptap/suggestion";
+import { TaskListExt } from "~/entities/blocks/task-list";
 import { starterkitDefaultOptions } from "~/entities/editor-area";
 import { MenuItem, menuItems } from "../model/menuItems";
 import { renderMenu } from "./renderMenu";
@@ -35,6 +36,7 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
           };
         },
       }),
+      TaskListExt,
     ];
   },
   addProseMirrorPlugins() {
