@@ -89,7 +89,6 @@ export default [
       ],
       "@typescript-eslint/no-confusing-void-expression": ["error", { ignoreArrowShorthand: true }],
       "@typescript-eslint/member-ordering": "error",
-      "@typescript-eslint/no-unsafe-argument": "off",
 
       // import
       ...importPlugin.configs.recommended.rules,
