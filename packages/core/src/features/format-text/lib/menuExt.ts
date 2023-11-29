@@ -1,17 +1,22 @@
-import { render } from "solid-js/web";
 import { Extension, isNodeSelection } from "@tiptap/core";
 import { BubbleMenuPlugin } from "@tiptap/extension-bubble-menu";
 import { Underline } from "@tiptap/extension-underline";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
+import { render, RenderedComponent } from "~/shared/lib";
 import { starterkitDefaultOptions } from "~/entities/editor-area";
 import { FormatTextMenu } from "../ui/FormatTextMenu";
 
-type FormatTextMenuStorage = Partial<{
-  onMenuCleanup: () => void;
-}>;
+interface FormatTextMenuStorage {
+  component: RenderedComponent | null;
+}
 
 export const FormatTextMenuExt = Extension.create<Record<string, never>, FormatTextMenuStorage>({
   name: "formatTextMenu",
+  addStorage() {
+    return {
+      component: null,
+    };
+  },
   addExtensions() {
     return [
       StarterKit.extend<StarterKitOptions>({
@@ -30,14 +35,13 @@ export const FormatTextMenuExt = Extension.create<Record<string, never>, FormatT
     ];
   },
   addProseMirrorPlugins() {
-    const menuEl = document.createElement("div");
-    this.storage.onMenuCleanup = render(() => FormatTextMenu({ editor: this.editor }), menuEl);
+    this.storage.component = render(FormatTextMenu, { editor: this.editor }, { detached: true });
 
     return [
       BubbleMenuPlugin({
         pluginKey: "formatTextMenu/bubbleMenu",
         editor: this.editor,
-        element: menuEl,
+        element: this.storage.component.el,
         shouldShow: ({ state }) => {
           const { selection } = state;
           return !selection.empty && !isNodeSelection(selection);
@@ -46,6 +50,7 @@ export const FormatTextMenuExt = Extension.create<Record<string, never>, FormatT
     ];
   },
   onDestroy() {
-    this.storage.onMenuCleanup?.();
+    this.storage.component?.cleanup();
+    this.storage.component = null;
   },
 });

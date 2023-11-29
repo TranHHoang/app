@@ -1,11 +1,11 @@
-import { Accessor, Component, createSignal, For } from "solid-js";
+import { Component, createSignal, For } from "solid-js";
 import { FloatingMenu } from "~/shared/ui/menu";
 import { MenuItem } from "../model/menuItems";
 import { MenuButton } from "./MenuButton";
 
 interface InsertBlockMenuProps {
   command: (props: MenuItem) => void;
-  items: Accessor<MenuItem[]>;
+  items: MenuItem[];
   exposeOnKeyDownHandler: (fn: (e: KeyboardEvent) => boolean) => void;
 }
 
@@ -18,15 +18,15 @@ export const InsertBlockMenu: Component<InsertBlockMenuProps> = (props) => {
   function onKeyDown(e: KeyboardEvent): boolean {
     switch (e.key) {
       case "ArrowUp": {
-        setSelectedIndex((selectedIndex() + props.items().length - 1) % props.items().length);
+        setSelectedIndex((selectedIndex() + props.items.length - 1) % props.items.length);
         break;
       }
       case "ArrowDown": {
-        setSelectedIndex((selectedIndex() + 1) % props.items().length);
+        setSelectedIndex((selectedIndex() + 1) % props.items.length);
         break;
       }
       case "Enter": {
-        const item = props.items()[selectedIndex()];
+        const item = props.items[selectedIndex()];
         if (item) props.command(item);
         break;
       }
@@ -39,7 +39,7 @@ export const InsertBlockMenu: Component<InsertBlockMenuProps> = (props) => {
 
   return (
     <FloatingMenu component="div" class="InsertBlockMenu">
-      <For each={props.items()}>
+      <For each={props.items}>
         {(item, index) => (
           <MenuButton item={item} selected={selectedIndex() === index()} onClick={() => props.command(item)} />
         )}

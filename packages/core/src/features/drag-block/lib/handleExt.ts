@@ -1,32 +1,29 @@
-import { render } from "solid-js/web";
 import { Extension } from "@tiptap/core";
 import { Plugin } from "@tiptap/pm/state";
+import { render, RenderedComponent } from "~/shared/lib";
 import { BlockDragHandle } from "../ui/BlockDragHandle";
 import { Dropcursor } from "./dropcursor";
 import { nodeAtCoords } from "./utils";
 
 function BlockDragHandlePlugin(): Plugin {
-  const dragHandleEl = document.createElement("div");
+  let component: RenderedComponent | null = null;
 
   function showHandle(): void {
-    dragHandleEl.firstElementChild?.classList.remove("hidden");
+    component?.el.classList.remove("hidden");
   }
 
   function hideHandle(): void {
-    dragHandleEl.firstElementChild?.classList.add("hidden");
+    component?.el.classList.add("hidden");
   }
 
   return new Plugin({
     view(view) {
-      document.body.append(dragHandleEl);
-
-      const cleanup = render(() => BlockDragHandle({ view }), dragHandleEl);
+      component = render(BlockDragHandle, { view });
       hideHandle();
 
       return {
         destroy() {
-          cleanup();
-          dragHandleEl.remove();
+          component?.cleanup();
         },
       };
     },
@@ -51,7 +48,8 @@ function BlockDragHandlePlugin(): Plugin {
             left -= 20;
           }
 
-          const handleEl = dragHandleEl.firstElementChild as HTMLElement;
+          const handleEl = component?.el;
+          if (!handleEl) return;
 
           handleEl.style.left = `${left}px`;
           handleEl.style.top = `${rect.top + (lineHeight - 24) / 2 + paddingTop}px`;

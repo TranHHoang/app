@@ -1,50 +1,50 @@
 import { createSignal } from "solid-js";
-import { render } from "solid-js/web";
 import { computePosition, ReferenceElement, shift } from "@floating-ui/dom";
 import { SuggestionOptions } from "@tiptap/suggestion";
+import { render, RenderedComponent } from "~/shared/lib";
 import { MenuItem } from "../model/menuItems";
 import { InsertBlockMenu } from "../ui/InsertBlockMenu";
 
 type RenderFnReturnType = ReturnType<NonNullable<SuggestionOptions<MenuItem>["render"]>>;
 
 export function renderMenu(): RenderFnReturnType {
-  let cleanup: (() => void) | null = null;
   let onKeyDownHandler: ((e: KeyboardEvent) => boolean) | null = null;
-  const menuEl = document.createElement("div");
-
+  let component: RenderedComponent | null = null;
   const [menuItems, setMenuItems] = createSignal<MenuItem[]>([]);
 
   return {
     onStart({ items, command, clientRect }) {
-      document.body.append(menuEl);
-
       setMenuItems(items);
-      cleanup = render(
-        () => InsertBlockMenu({ items: menuItems, command, exposeOnKeyDownHandler: (fn) => (onKeyDownHandler = fn) }),
-        menuEl
-      );
-      void onChangePosition(menuEl.firstElementChild, clientRect?.());
+      component = render(InsertBlockMenu, {
+        command,
+        exposeOnKeyDownHandler(fn) {
+          onKeyDownHandler = fn;
+        },
+        get items() {
+          return menuItems();
+        },
+      });
+      void onChangePosition(component.el, clientRect?.());
     },
     onUpdate({ items, clientRect }) {
       setMenuItems(items);
-      void onChangePosition(menuEl.firstElementChild, clientRect?.());
+      void onChangePosition(component?.el, clientRect?.());
     },
     onKeyDown({ event }) {
       if (event.key === "Escape") {
-        cleanup?.();
-        menuEl.remove();
+        component?.cleanup();
         return true;
       }
       return onKeyDownHandler?.(event) ?? false;
     },
     onExit() {
-      cleanup?.();
-      menuEl.remove();
+      component?.cleanup();
+      component = null;
     },
   };
 }
 
-async function onChangePosition(el: Element | null, domRect: DOMRect | null | undefined): Promise<void> {
+async function onChangePosition(el: Element | null | undefined, domRect: DOMRect | null | undefined): Promise<void> {
   if (!(el instanceof HTMLElement) || !domRect) return;
   const refEl: ReferenceElement = {
     getBoundingClientRect: () => domRect,
