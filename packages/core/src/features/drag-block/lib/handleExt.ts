@@ -36,7 +36,7 @@ function BlockDragHandlePlugin(): Plugin {
           if (!view.editable) return;
 
           const node = nodeAtCoords({ x: event.clientX + 30, y: event.clientY }, ".ProseMirror");
-          if (!(node instanceof Element)) {
+          if (!(node instanceof Element) || node.matches("ul, ol")) {
             hideHandle();
             return;
           }
@@ -46,10 +46,14 @@ function BlockDragHandlePlugin(): Plugin {
           const paddingTop = Number.parseInt(compStyle.paddingTop);
 
           const rect = node.getBoundingClientRect();
+          let left = rect.left - 20;
+          if (node.matches("ul:not([data-type=taskList]) li, ol li")) {
+            left -= 20;
+          }
 
           const handleEl = dragHandleEl.firstElementChild as HTMLElement;
 
-          handleEl.style.left = `${rect.left - 20}px`;
+          handleEl.style.left = `${left}px`;
           handleEl.style.top = `${rect.top + (lineHeight - 24) / 2 + paddingTop}px`;
           showHandle();
         },
