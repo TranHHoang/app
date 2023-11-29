@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepack": "turbo build --filter=!@app/desktop",
     "lint": "turbo lint",
     "lint:prettier": "turbo lint:prettier",
     "typecheck": "turbo typecheck",
