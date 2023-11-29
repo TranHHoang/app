@@ -5,15 +5,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "out/**"]
     },
-    "typecheck": {
-      "dependsOn": ["build"]
-    },
-    "lint": {
-      "dependsOn": ["build"]
-    },
-    "lint:prettier": {
-      "dependsOn": ["build"]
-    },
+    "typecheck": {},
+    "lint": {},
+    "lint:prettier": {},
     "dev": {
       "cache": false,
       "persistent": true

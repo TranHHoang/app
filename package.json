@@ -9,7 +9,8 @@
     "lint:prettier": "turbo lint:prettier",
     "typecheck": "turbo typecheck",
     "build": "turbo build",
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "lint:all": "turbo run lint lint:prettier typecheck"
   },
   "devDependencies": {
     "@eslint/js": "^8.54.0",
