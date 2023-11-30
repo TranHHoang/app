@@ -15,7 +15,6 @@ export class SolidRenderer<P extends object = object> {
   id: string;
   editor: Editor;
   element: Element;
-  componentEl: HTMLElement | null = null;
   setProps!: SetStoreFunction<Record<string, unknown>>;
 
   #dispose!: () => void;
@@ -24,7 +23,6 @@ export class SolidRenderer<P extends object = object> {
     this.id = Math.floor(Math.random() * 0xff_ff_ff_ff).toString();
     this.editor = editor;
     this.element = document.createElement(as);
-    this.element.classList.add("solid-renderer");
 
     createRoot((dispose) => {
       const [reactiveProps, setProps] = createStore<Record<string, unknown>>(props ?? {});
@@ -33,7 +31,10 @@ export class SolidRenderer<P extends object = object> {
         this.element.classList.add(...className.split(" "));
       }
       insert(this.element, <Dynamic component={component} {...(reactiveProps as P)} />);
-      this.componentEl = this.element.firstElementChild as HTMLElement;
+      // Remove wrapper
+      const componentEl = this.element.firstElementChild as HTMLElement;
+      this.element.replaceWith(componentEl);
+      this.element = componentEl;
       // eslint-disable-next-line solid/reactivity
       this.#dispose = dispose;
     }, getTiptapSolidReactiveOwner(this.editor));

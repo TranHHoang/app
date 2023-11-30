@@ -24,11 +24,11 @@ function BlockDragHandlePlugin(options: BlockDragHandlePluginOptions): Plugin {
   let component: SolidRenderer<ComponentProps<typeof BlockDragHandle>> | null = null;
 
   function showHandle(): void {
-    component?.componentEl?.classList.remove("hidden");
+    component?.element.classList.remove("hidden");
   }
 
   function hideHandle(): void {
-    component?.componentEl?.classList.add("hidden");
+    component?.element.classList.add("hidden");
   }
 
   return new Plugin({
@@ -69,7 +69,7 @@ function BlockDragHandlePlugin(options: BlockDragHandlePluginOptions): Plugin {
             left -= 20;
           }
 
-          const handleEl = component?.componentEl;
+          const handleEl = component?.element as HTMLElement | undefined;
           if (!handleEl) return;
 
           handleEl.style.left = `${left}px`;

@@ -46,7 +46,6 @@ export class SolidNodeView extends NodeView<Component, Editor, SolidNodeViewRend
       const tagName = this.node.isInline ? "span" : "div";
 
       this.rootElement = document.createElement(tagName);
-      this.rootElement.classList.add("solid-renderer");
 
       this.contentElement = this.node.isLeaf ? null : document.createElement(tagName);
 
@@ -74,15 +73,15 @@ export class SolidNodeView extends NodeView<Component, Editor, SolidNodeViewRend
       };
 
       insert(this.rootElement, SolidNodeViewProvider(props));
+      // Remove wrapper
+      const componentEl = this.rootElement.firstElementChild as HTMLElement;
+      this.rootElement.replaceWith(componentEl);
+      this.rootElement = componentEl;
     }, getTiptapSolidReactiveOwner(this.editor));
   }
 
   get dom(): HTMLElement {
-    if (!this.rootElement?.firstElementChild?.hasAttribute("data-node-view-wrapper")) {
-      throw new Error("Please use the NodeViewWrapper component for your node view.");
-    }
-
-    return this.rootElement;
+    return this.rootElement!;
   }
 
   get contentDOM(): HTMLElement | null {
