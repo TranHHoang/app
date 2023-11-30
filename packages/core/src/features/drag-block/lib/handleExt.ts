@@ -1,29 +1,50 @@
-import { Extension } from "@tiptap/core";
+import { ComponentProps } from "solid-js";
+import { SolidRenderer } from "@app/tiptap-solid";
+import { Editor, Extension } from "@tiptap/core";
 import { Plugin } from "@tiptap/pm/state";
-import { render, RenderedComponent } from "~/shared/lib";
 import { BlockDragHandle } from "../ui/BlockDragHandle";
 import { Dropcursor } from "./dropcursor";
 import { nodeAtCoords } from "./utils";
 
-function BlockDragHandlePlugin(): Plugin {
-  let component: RenderedComponent | null = null;
+interface BlockDragHandlePluginOptions {
+  editor: Editor;
+}
+
+export const BlockDragHandleExt = Extension.create({
+  name: "blockDragHandle",
+  addExtensions() {
+    return [Dropcursor];
+  },
+  addProseMirrorPlugins() {
+    return [BlockDragHandlePlugin({ editor: this.editor })];
+  },
+});
+
+function BlockDragHandlePlugin(options: BlockDragHandlePluginOptions): Plugin {
+  let component: SolidRenderer<ComponentProps<typeof BlockDragHandle>> | null = null;
 
   function showHandle(): void {
-    component?.el.classList.remove("hidden");
+    component?.componentEl?.classList.remove("hidden");
   }
 
   function hideHandle(): void {
-    component?.el.classList.add("hidden");
+    component?.componentEl?.classList.add("hidden");
   }
 
   return new Plugin({
     view(view) {
-      component = render(BlockDragHandle, { view });
+      component = new SolidRenderer(BlockDragHandle, {
+        editor: options.editor,
+        props: {
+          view,
+        },
+      });
+      document.body.append(component.element);
       hideHandle();
 
       return {
         destroy() {
-          component?.cleanup();
+          component?.destroy();
         },
       };
     },
@@ -48,7 +69,7 @@ function BlockDragHandlePlugin(): Plugin {
             left -= 20;
           }
 
-          const handleEl = component?.el;
+          const handleEl = component?.componentEl;
           if (!handleEl) return;
 
           handleEl.style.left = `${left}px`;
@@ -68,13 +89,3 @@ function BlockDragHandlePlugin(): Plugin {
     },
   });
 }
-
-export const BlockDragHandleExt = Extension.create({
-  name: "blockDragHandle",
-  addExtensions() {
-    return [Dropcursor];
-  },
-  addProseMirrorPlugins() {
-    return [BlockDragHandlePlugin()];
-  },
-});

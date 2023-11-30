@@ -45,3 +45,7 @@ body {
   height: 100svh;
   font-family: sans-serif;
 }
+
+.absolute {
+  position: absolute;
+}

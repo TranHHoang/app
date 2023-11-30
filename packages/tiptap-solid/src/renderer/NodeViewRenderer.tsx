@@ -12,7 +12,7 @@ import type {
 import { NodeView } from "@tiptap/core";
 import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
 import type { Decoration } from "@tiptap/pm/view";
-import { getTiptapSolidReactiveOwner } from "./ReactiveOwner";
+import { getTiptapSolidReactiveOwner } from "./reactiveOwner";
 import type { SolidNodeViewContextProps } from "./useSolidNodeView";
 import { SolidNodeViewContext } from "./useSolidNodeView";
 
