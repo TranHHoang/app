@@ -9,6 +9,7 @@ import tsParser from "@typescript-eslint/parser";
 import appDesktop from "./apps/desktop/eslint.config.mjs";
 import packageCore from "./packages/core/eslint.config.js";
 import packageVitePluginStyledJsx from "./packages/vite-plugin-styled-jsx/eslint.config.js";
+import packageTiptapSolid from "./packages/tiptap-solid/eslint.config.js";
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
@@ -138,5 +139,6 @@ export default [
   ...appDesktop.configs,
   packageCore.configs,
   packageVitePluginStyledJsx.configs,
+  packageTiptapSolid.configs,
   prettierConfig,
 ];

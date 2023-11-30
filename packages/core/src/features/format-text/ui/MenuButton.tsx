@@ -1,7 +1,7 @@
 import { Component, ParentProps, ValidComponent } from "solid-js";
+import { useEditorActive } from "@app/tiptap-solid";
 import { Editor } from "@tiptap/core";
 import { MenuButton as GenericMenuButton, ToggleButton } from "~/shared/ui/buttons";
-import { useEditorActive } from "~/entities/editor-area";
 
 export type MenuButtonProps = ParentProps<{
   editor: Editor;

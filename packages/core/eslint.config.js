@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const FOLDER = relative(process.cwd(), dirname(fileURLToPath(import.meta.url)));
 
-const LAYERS = ["assets", "shared", "entities", "features", "widgets", "pages", "app"];
+const LAYERS = ["packages", "assets", "shared", "entities", "features", "widgets", "pages", "app"];
 
 export default {
   ignores: [join(FOLDER, "src/assets/"), `vite-plugin/`],
@@ -43,6 +43,10 @@ export default {
             {
               target: ["assets"],
               allow: ["**/*"],
+            },
+            {
+              target: ["packages"],
+              allow: ["**/index.d.ts"],
             },
           ],
         },
@@ -88,10 +92,16 @@ export default {
     settings: {
       // boundaries
       "boundaries/ignore": [join(FOLDER, "src/index.tsx")],
-      "boundaries/elements": LAYERS.map((type) => ({
-        type,
-        pattern: join(FOLDER, `src/${type}`),
-      })),
+      "boundaries/elements": [
+        ...LAYERS.map((type) => ({
+          type,
+          pattern: join(FOLDER, `src/${type}`),
+        })),
+        {
+          type: "packages",
+          pattern: "packages/tiptap-solid/*",
+        },
+      ],
     },
   },
 };

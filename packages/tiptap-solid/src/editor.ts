@@ -6,14 +6,14 @@ export function useEditorActive(
   editor: Accessor<Editor>,
   name: Accessor<string>,
   attributes?: Record<string, never>
-): () => boolean {
+): Accessor<boolean> {
   return createEditorTransaction(editor, () => editor().isActive(name(), attributes));
 }
 
 export function useEditorAttributes(
   editor: Accessor<Editor>,
   nameOrType: Accessor<string | MarkType | NodeType>
-): () => Record<string, unknown> {
+): Accessor<Record<string, unknown>> {
   return createEditorTransaction(editor, () => editor().getAttributes(nameOrType()));
 }
 
