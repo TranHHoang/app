@@ -1,10 +1,11 @@
-import type { Component, Setter } from "solid-js";
+import type { Component } from "solid-js";
 import { createRoot } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createStore, SetStoreFunction } from "solid-js/store";
 import { Dynamic, insert } from "solid-js/web";
 import type {
   DecorationWithType,
   Editor,
+  NodeViewProps,
   NodeViewRenderer,
   NodeViewRendererOptions,
   NodeViewRendererProps,
@@ -20,17 +21,21 @@ export interface SolidNodeViewRendererOptions extends NodeViewRendererOptions {
   update: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null;
 }
 
-export class SolidNodeView extends NodeView<Component, Editor, SolidNodeViewRendererOptions> {
+export class SolidNodeView extends NodeView<Component<NodeViewProps>, Editor, SolidNodeViewRendererOptions> {
   rootElement!: HTMLElement | null;
   contentElement!: HTMLElement | null;
-  setProps!: Setter<Record<string, unknown>>;
+  setProps!: SetStoreFunction<NodeViewProps>;
   dispose!: () => void;
 
-  constructor(component: Component, props: NodeViewRendererProps, options?: Partial<SolidNodeViewRendererOptions>) {
+  constructor(
+    component: Component<NodeViewProps>,
+    props: NodeViewRendererProps,
+    options?: Partial<SolidNodeViewRendererOptions>
+  ) {
     super(component, props, options);
     createRoot((dispose) => {
       this.dispose = dispose;
-      const [props, setProps] = createStore({
+      const [props, setProps] = createStore<NodeViewProps>({
         editor: this.editor,
         node: this.node,
         decorations: this.decorations,
@@ -47,22 +52,11 @@ export class SolidNodeView extends NodeView<Component, Editor, SolidNodeViewRend
 
       this.rootElement = document.createElement(tagName);
 
-      this.contentElement = this.node.isLeaf ? null : document.createElement(tagName);
-
-      if (this.contentElement) {
-        // For some reason the whiteSpace prop is not inherited properly in Chrome and Safari
-        // With this fix it seems to work fine
-        // See: https://github.com/ueberdosis/tiptap/issues/1197
-        this.contentElement.style.whiteSpace = "inherit";
-      }
-
-      const SolidNodeViewProvider: Component<Record<string, unknown>> = (componentProps) => {
+      const SolidNodeViewProvider: Component<NodeViewProps> = (componentProps) => {
         const onDragStart = this.onDragStart.bind(this);
         // eslint-disable-next-line unicorn/consistent-function-scoping
         const nodeViewContentRef: SolidNodeViewContextProps["nodeViewContentRef"] = (element) => {
-          if (element && this.contentElement && element.firstChild !== this.contentElement) {
-            element.append(this.contentElement);
-          }
+          this.contentElement = element;
         };
 
         return (
@@ -139,7 +133,7 @@ export class SolidNodeView extends NodeView<Component, Editor, SolidNodeViewRend
 }
 
 export function SolidNodeViewRenderer(
-  component: Component,
+  component: Component<NodeViewProps>,
   options?: Partial<SolidNodeViewRendererOptions>
 ): NodeViewRenderer {
   return (props: NodeViewRendererProps) => {
