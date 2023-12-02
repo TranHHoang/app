@@ -1,20 +1,23 @@
-import type { Component, ValidComponent } from "solid-js";
-import { Dynamic } from "solid-js/web";
+import type { JSX, JSXElement, ValidComponent } from "solid-js";
+import { Dynamic, DynamicProps } from "solid-js/web";
 import { useSolidNodeView } from "./useSolidNodeView";
 
-export interface NodeViewContentProps {
-  style?: Record<string, string>;
-  as?: ValidComponent;
-}
+type NodeViewContentProps<T extends ValidComponent> = DynamicProps<T> & Pick<JSX.CustomAttributes<T>, "ref">;
 
-export const NodeViewContent: Component<NodeViewContentProps> = (props) => {
+export const NodeViewContent = <T extends ValidComponent>(
+  props: NodeViewContentProps<T> | Omit<NodeViewContentProps<T>, "component">
+): JSXElement => {
   const state = useSolidNodeView();
 
   return (
     <Dynamic
-      component={props.as ?? "div"}
       {...props}
-      ref={state.nodeViewContentRef}
+      component={props.component ?? "div"}
+      ref={(ref: HTMLElement) => {
+        state.nodeViewContentRef?.(ref);
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        if (typeof props.ref === "function") props.ref(ref);
+      }}
       data-node-view-content=""
       style={{
         ...props.style,
