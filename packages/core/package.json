@@ -18,14 +18,11 @@
     "@tiptap/extension-bubble-menu": "^2.1.12",
     "@tiptap/extension-dropcursor": "^2.1.12",
     "@tiptap/extension-placeholder": "^2.1.12",
-    "@tiptap/extension-task-item": "^2.1.12",
-    "@tiptap/extension-task-list": "^2.1.12",
     "@tiptap/extension-underline": "^2.1.12",
     "@tiptap/pm": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "@tiptap/suggestion": "^2.1.12",
-    "clsx": "^2.0.0",
-    "solid-tiptap": "^0.6.0"
+    "clsx": "^2.0.0"
   },
   "devDependencies": {
     "@app/vite-plugin-styled-jsx": "workspace:^",

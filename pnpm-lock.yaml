@@ -76,14 +76,14 @@ importers:
         version: link:../../packages/core
       '@electron-toolkit/utils':
         specifier: ^2.0.1
-        version: 2.0.1(electron@28.0.0-beta.9)
+        version: 2.0.1(electron@28.0.0-beta.11)
       electron-updater:
         specifier: ^6.1.7
         version: 6.1.7
     devDependencies:
       electron:
         specifier: beta
-        version: 28.0.0-beta.9
+        version: 28.0.0-beta.11
       electron-builder:
         specifier: ^24.9.1
         version: 24.9.1
@@ -117,12 +117,6 @@ importers:
       '@tiptap/extension-placeholder':
         specifier: ^2.1.12
         version: 2.1.12(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)
-      '@tiptap/extension-task-item':
-        specifier: ^2.1.12
-        version: 2.1.12(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)
-      '@tiptap/extension-task-list':
-        specifier: ^2.1.12
-        version: 2.1.12(@tiptap/core@2.1.12)
       '@tiptap/extension-underline':
         specifier: ^2.1.12
         version: 2.1.12(@tiptap/core@2.1.12)
@@ -138,9 +132,6 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
-      solid-tiptap:
-        specifier: ^0.6.0
-        version: 0.6.0(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)(solid-js@1.8.6)
     devDependencies:
       '@app/vite-plugin-styled-jsx':
         specifier: workspace:^
@@ -156,13 +147,13 @@ importers:
         version: 1.8.6
       stylelint:
         specifier: next
-        version: 16.0.0-2(typescript@5.3.2)
+        version: 16.0.0-3(typescript@5.3.2)
       stylelint-config-recommended:
         specifier: ^13.0.0
-        version: 13.0.0(stylelint@16.0.0-2)
+        version: 13.0.0(stylelint@16.0.0-3)
       stylelint-config-standard:
         specifier: ^34.0.0
-        version: 34.0.0(stylelint@16.0.0-2)
+        version: 34.0.0(stylelint@16.0.0-3)
       unplugin-icons:
         specifier: ^0.17.4
         version: 0.17.4
@@ -610,12 +601,12 @@ packages:
       ajv-keywords: 3.5.2(ajv@6.12.6)
     dev: true
 
-  /@electron-toolkit/utils@2.0.1(electron@28.0.0-beta.9):
+  /@electron-toolkit/utils@2.0.1(electron@28.0.0-beta.11):
     resolution: {integrity: sha512-3nnjd3D1NIjxdzNrvR5fkJ3kbJNbRkpHppv0/pSbMX6I0DaBzpPXeSfDYuJJKzZrAc3CmGcJa0MU4+AjEOlT4g==}
     peerDependencies:
       electron: '>=13.0.0'
     dependencies:
-      electron: 28.0.0-beta.9
+      electron: 28.0.0-beta.11
     dev: false
 
   /@electron/asar@3.2.8:
@@ -1821,24 +1812,6 @@ packages:
       '@tiptap/core': 2.1.12(@tiptap/pm@2.1.12)
     dev: false
 
-  /@tiptap/extension-task-item@2.1.12(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12):
-    resolution: {integrity: sha512-uqrDTO4JwukZUt40GQdvB6S+oDhdp4cKNPMi0sbteWziQugkSMLlkYvxU0Hfb/YeziaWWwFI7ssPu/hahyk6dQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.12(@tiptap/pm@2.1.12)
-      '@tiptap/pm': 2.1.12
-    dev: false
-
-  /@tiptap/extension-task-list@2.1.12(@tiptap/core@2.1.12):
-    resolution: {integrity: sha512-BUpYlEWK+Q3kw9KIiOqvhd0tUPhMcOf1+fJmCkluJok+okAxMbP1umAtCEQ3QkoCwLr+vpHJov7h3yi9+dwgeQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.12(@tiptap/pm@2.1.12)
-    dev: false
-
   /@tiptap/extension-text@2.1.12(@tiptap/core@2.1.12):
     resolution: {integrity: sha512-rCNUd505p/PXwU9Jgxo4ZJv4A3cIBAyAqlx/dtcY6cjztCQuXJhuQILPhjGhBTOLEEL4kW2wQtqzCmb7O8i2jg==}
     peerDependencies:
@@ -2802,8 +2775,8 @@ packages:
     dev: true
     optional: true
 
-  /cosmiconfig@8.3.6(typescript@5.3.2):
-    resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
+  /cosmiconfig@9.0.0(typescript@5.3.2):
+    resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
     engines: {node: '>=14'}
     peerDependencies:
       typescript: '>=4.9.5'
@@ -2811,10 +2784,10 @@ packages:
       typescript:
         optional: true
     dependencies:
+      env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
-      path-type: 4.0.0
       typescript: 5.3.2
     dev: true
 
@@ -3093,8 +3066,8 @@ packages:
       - supports-color
     dev: true
 
-  /electron@28.0.0-beta.9:
-    resolution: {integrity: sha512-9e42Qo77EQAhEkzgibhXR7Il6OwE8LCzfS2ELXak/66W9DB+oziXCGux/2Bi2iLkotbB5qJeuLD5/cZYOrHzuA==}
+  /electron@28.0.0-beta.11:
+    resolution: {integrity: sha512-B3qczetEdA2snHperFPjMfjRdegoZxr6spvfiMlhjeVa18IFzi7/yANguxfHE045+fHtzhy6lGl7Qf5ZqOqheQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
@@ -5615,19 +5588,6 @@ packages:
       solid-js: 1.8.6
     dev: true
 
-  /solid-tiptap@0.6.0(@tiptap/core@2.1.12)(@tiptap/pm@2.1.12)(solid-js@1.8.6):
-    resolution: {integrity: sha512-79soXY4lSGkCdlfKalawGyvPE0kOvrKd7w9Zy3o3MY4dppti5Yd2RUVqyNPtYPpvCyqaLg+kofq81RRGl/Ql4Q==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@tiptap/core': ^2
-      '@tiptap/pm': ^2
-      solid-js: ^1.7
-    dependencies:
-      '@tiptap/core': 2.1.12(@tiptap/pm@2.1.12)
-      '@tiptap/pm': 2.1.12
-      solid-js: 1.8.6
-    dev: false
-
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -5755,27 +5715,27 @@ packages:
       inline-style-parser: 0.1.1
     dev: true
 
-  /stylelint-config-recommended@13.0.0(stylelint@16.0.0-2):
+  /stylelint-config-recommended@13.0.0(stylelint@16.0.0-3):
     resolution: {integrity: sha512-EH+yRj6h3GAe/fRiyaoO2F9l9Tgg50AOFhaszyfov9v6ayXJ1IkSHwTxd7lB48FmOeSGDPLjatjO11fJpmarkQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
       stylelint: ^15.10.0
     dependencies:
-      stylelint: 16.0.0-2(typescript@5.3.2)
+      stylelint: 16.0.0-3(typescript@5.3.2)
     dev: true
 
-  /stylelint-config-standard@34.0.0(stylelint@16.0.0-2):
+  /stylelint-config-standard@34.0.0(stylelint@16.0.0-3):
     resolution: {integrity: sha512-u0VSZnVyW9VSryBG2LSO+OQTjN7zF9XJaAJRX/4EwkmU0R2jYwmBSN10acqZisDitS0CLiEiGjX7+Hrq8TAhfQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     peerDependencies:
       stylelint: ^15.10.0
     dependencies:
-      stylelint: 16.0.0-2(typescript@5.3.2)
-      stylelint-config-recommended: 13.0.0(stylelint@16.0.0-2)
+      stylelint: 16.0.0-3(typescript@5.3.2)
+      stylelint-config-recommended: 13.0.0(stylelint@16.0.0-3)
     dev: true
 
-  /stylelint@16.0.0-2(typescript@5.3.2):
-    resolution: {integrity: sha512-8t4fRQ3uxmZCQyaYCmf+qGCglM5wwX2QHz79zyOZhtrPxafGsaA8K9jC+tNWa2fRNaGqfT16GPh0gAzbfvNRBw==}
+  /stylelint@16.0.0-3(typescript@5.3.2):
+    resolution: {integrity: sha512-knbw6wKF0eVG9xOPIjO2PGTaz4Wr2DOYxzg7ug4BR4aqDewUhTecloGVShYolr4hPg2n2BJP2uOfI3l905F/Uw==}
     engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
@@ -5785,7 +5745,7 @@ packages:
       '@csstools/selector-specificity': 3.0.0(postcss-selector-parser@6.0.13)
       balanced-match: 2.0.0
       colord: 2.9.3
-      cosmiconfig: 8.3.6(typescript@5.3.2)
+      cosmiconfig: 9.0.0(typescript@5.3.2)
       css-functions-list: 3.2.1
       css-tree: 2.3.1
       debug: 4.3.4
