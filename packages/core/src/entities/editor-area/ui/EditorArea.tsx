@@ -56,7 +56,6 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
       <div ref={ref} class="Editor" />
       <style jsx>{`
         .Editor {
-          margin: 5px;
           height: 100%;
           font-size: var(--text-base);
         }
@@ -66,6 +65,7 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
             outline: none;
             padding: 10px 30px;
             height: 100%;
+            overflow: auto;
 
             > * {
               margin: 5px 0;
