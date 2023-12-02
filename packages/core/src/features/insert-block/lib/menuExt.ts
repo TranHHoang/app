@@ -1,7 +1,14 @@
 import { Extension } from "@tiptap/core";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { Suggestion, SuggestionOptions } from "@tiptap/suggestion";
-import { TaskListExt } from "~/entities/blocks/task-list";
+import {
+  BulletItemNode,
+  BulletListNode,
+  OrderedItemNode,
+  OrderedListNode,
+  TaskItemNode,
+  TaskListNode,
+} from "~/entities/blocks/list";
 import { starterkitDefaultOptions } from "~/entities/editor-area";
 import { MenuItem, menuItems } from "../model/menuItems";
 import { renderMenu } from "./renderMenu";
@@ -28,15 +35,17 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
             ...starterkitDefaultOptions,
             heading: {},
             blockquote: {},
-            bulletList: {},
             codeBlock: {},
             horizontalRule: {},
-            listItem: {},
-            orderedList: {},
           };
         },
       }),
-      TaskListExt,
+      BulletListNode,
+      BulletItemNode,
+      TaskListNode,
+      TaskItemNode,
+      OrderedItemNode,
+      OrderedListNode,
     ];
   },
   addProseMirrorPlugins() {
