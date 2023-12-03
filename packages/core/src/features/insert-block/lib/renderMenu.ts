@@ -1,4 +1,4 @@
-import { ComponentProps, createSignal } from "solid-js";
+import { ComponentProps } from "solid-js";
 import { SolidRenderer } from "@app/tiptap-solid";
 import { computePosition, ReferenceElement, shift } from "@floating-ui/dom";
 import { SuggestionOptions } from "@tiptap/suggestion";
@@ -10,29 +10,25 @@ type RenderFnReturnType = ReturnType<NonNullable<SuggestionOptions<MenuItem>["re
 export function renderMenu(): RenderFnReturnType {
   let onKeyDownHandler: ((e: KeyboardEvent) => boolean) | null = null;
   let component: SolidRenderer<ComponentProps<typeof InsertBlockMenu>> | null = null;
-  const [menuItems, setMenuItems] = createSignal<MenuItem[]>([]);
 
   return {
     onStart({ editor, items, command, clientRect }) {
-      setMenuItems(items);
       component = new SolidRenderer(InsertBlockMenu, {
         editor,
         props: {
-          command,
           exposeOnKeyDownHandler(fn: (e: KeyboardEvent) => boolean) {
             onKeyDownHandler = fn;
           },
-          get items() {
-            return menuItems();
-          },
+          command,
+          items,
         },
         className: "absolute",
       });
       document.body.append(component.element);
       void onChangePosition(component.element, clientRect?.());
     },
-    onUpdate({ items, clientRect }) {
-      setMenuItems(items);
+    onUpdate({ items, command, clientRect }) {
+      component?.updateProps({ items, command });
       void onChangePosition(component?.element, clientRect?.());
     },
     onKeyDown({ event }) {

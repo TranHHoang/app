@@ -40,7 +40,7 @@ export class SolidRenderer<P extends object = object> {
     }, getTiptapSolidReactiveOwner(this.editor));
   }
 
-  updateProps(props: P): void {
+  updateProps(props: Partial<P>): void {
     this.setProps({
       ...props,
     });

@@ -30,7 +30,7 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
   addExtensions() {
     return [
       StarterKit.extend<StarterKitOptions>({
-        name: "starterKitNode",
+        name: "starterKitBlock",
         addOptions() {
           return {
             ...starterkitDefaultOptions,
