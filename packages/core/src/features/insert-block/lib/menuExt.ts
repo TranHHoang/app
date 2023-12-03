@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { Suggestion, SuggestionOptions } from "@tiptap/suggestion";
+import { DividerNode } from "~/entities/blocks/divider";
 import {
   BulletItemNode,
   BulletListNode,
@@ -36,10 +37,10 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
             heading: {},
             blockquote: {},
             codeBlock: {},
-            horizontalRule: {},
           };
         },
       }),
+      DividerNode,
       BulletListNode,
       BulletItemNode,
       TaskListNode,
