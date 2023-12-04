@@ -14,7 +14,7 @@ export const BulletItem: Component = () => {
         .content {
           padding-left: 15px;
 
-          > :deep(.List) {
+          :where(> :deep(.List)) {
             counter-increment: ul-counter;
           }
         }

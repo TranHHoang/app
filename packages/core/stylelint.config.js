@@ -12,6 +12,7 @@ export default {
         ignorePseudoClasses: ["deep", "global"],
       },
     ],
+    "selector-max-specificity": ["0,2,0", { ignoreSelectors: ["#root"] }],
   },
   overrides: [
     {
