@@ -1,5 +1,5 @@
 import { SolidNodeViewRenderer } from "@app/tiptap-solid";
-import { Node } from "@tiptap/core";
+import { Node, nodeInputRule } from "@tiptap/core";
 import { NodeSelection, TextSelection } from "@tiptap/pm/state";
 import { Divider } from "../ui/Divider";
 
@@ -74,6 +74,14 @@ export const DividerNode = Node.create({
         };
       },
     };
+  },
+  addInputRules() {
+    return [
+      nodeInputRule({
+        find: /^(?:---|—-|___\s|\*\*\*\s)$/,
+        type: this.type,
+      }),
+    ];
   },
   addNodeView() {
     return SolidNodeViewRenderer(Divider);
