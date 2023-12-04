@@ -25,7 +25,6 @@ export const EditorArea: Component<EditorAreaProps> = (props) => {
         props.editor.commands.setContent(file.content);
       }
     } else if (e.key === "s") {
-      console.log(props.editor.getHTML());
       fileName = await saveTextFile(fileName, props.editor.getHTML().trim());
     }
   }
