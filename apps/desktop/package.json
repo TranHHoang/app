@@ -18,9 +18,9 @@
     "electron-updater": "^6.1.7"
   },
   "devDependencies": {
-    "electron": "beta",
+    "electron": "^28.0.0",
     "electron-builder": "^24.9.1",
     "electron-vite": "^1.0.29",
-    "vite": "^5.0.2"
+    "vite": "^5.0.6"
   }
 }
