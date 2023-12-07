@@ -16,4 +16,5 @@ pre-commit:
 
 pre-push:
   commands:
-    - pnpm lint:all
+    lint-all:
+      run: pnpm lint:all && echo {all_files} > /dev/null
