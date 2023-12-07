@@ -8,6 +8,9 @@ export const Placeholder = TiptapPlaceholder.configure({
       case "heading": {
         return `Heading ${node.attrs.level}`;
       }
+      case "codeBlock": {
+        return "";
+      }
       default: {
         return "Press '/' for commands...";
       }

@@ -1,4 +1,5 @@
 import boundriesPlugin from "eslint-plugin-boundaries";
+import importPlugin from "eslint-plugin-import";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import solidPlugin from "eslint-plugin-solid";
 import globals from "globals";
@@ -25,6 +26,7 @@ export default {
       solid: solidPlugin,
       boundaries: boundriesPlugin,
       "simple-import-sort": simpleImportSortPlugin,
+      import: importPlugin,
     },
     rules: {
       // solid
@@ -102,6 +104,7 @@ export default {
           pattern: "packages/tiptap-solid/*",
         },
       ],
+      "import/ignore": ["lowlight"], // Issue: https://github.com/import-js/eslint-plugin-import/issues/2556
     },
   },
 };

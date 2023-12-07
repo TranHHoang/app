@@ -15,3 +15,4 @@ export { default as TextItalic } from "~icons/ph/text-italic";
 export { default as TextStrike } from "~icons/ph/text-strikethrough";
 export { default as TextUnderline } from "~icons/ph/text-underline";
 export { default as TextCode } from "~icons/ph/brackets-square";
+export { default as CodeBlock } from "~icons/ph/code-block";

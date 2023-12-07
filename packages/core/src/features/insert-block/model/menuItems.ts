@@ -58,4 +58,9 @@ export const menuItems: MenuItem[] = [
     icon: Icon.TaskList,
     onCommand: (props) => runCommand(props, (cmd) => cmd.toggleTaskList()),
   },
+  {
+    title: "Code",
+    icon: Icon.CodeBlock,
+    onCommand: (props) => runCommand(props, (cmd) => cmd.toggleCodeBlock()),
+  },
 ];

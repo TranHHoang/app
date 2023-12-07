@@ -17,7 +17,6 @@ export function nodeAtCoords(coords: { x: number; y: number }, selectors: string
               "div[data-type=divider]",
               "div[data-type=listItem]",
               "p:not(:first-child)",
-              "pre",
               "blockquote",
               "h1, h2, h3, h4, h5, h6",
             ].join(", ")

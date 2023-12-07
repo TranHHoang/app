@@ -16,13 +16,15 @@
     "@kobalte/core": "^0.11.2",
     "@tiptap/core": "^2.1.12",
     "@tiptap/extension-bubble-menu": "^2.1.12",
+    "@tiptap/extension-code-block": "^2.1.13",
     "@tiptap/extension-dropcursor": "^2.1.12",
     "@tiptap/extension-placeholder": "^2.1.12",
     "@tiptap/extension-underline": "^2.1.12",
     "@tiptap/pm": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
     "@tiptap/suggestion": "^2.1.12",
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "lowlight": "^3.1.0"
   },
   "devDependencies": {
     "@app/vite-plugin-styled-jsx": "workspace:^",

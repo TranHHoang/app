@@ -16,6 +16,9 @@
   --bg-button-hover: #383838;
   --bg-button-active: #2e2e2e;
 
+  /* Code */
+  --bg-code: #404040;
+
   @media (prefers-color-scheme: dark) {
     --bg: #292929;
     --fg: #fff;
@@ -48,4 +51,19 @@ body {
 
 .absolute {
   position: absolute;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: var(--bg-button-active);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--bg-button-hover);
 }

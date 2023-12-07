@@ -1,6 +1,7 @@
 import { Extension } from "@tiptap/core";
 import { StarterKit, StarterKitOptions } from "@tiptap/starter-kit";
 import { Suggestion, SuggestionOptions } from "@tiptap/suggestion";
+import { CodeBlockNode } from "~/entities/blocks/code";
 import { DividerNode } from "~/entities/blocks/divider";
 import {
   BulletItemNode,
@@ -36,7 +37,6 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
             ...starterkitDefaultOptions,
             heading: {},
             blockquote: {},
-            codeBlock: {},
           };
         },
       }),
@@ -47,6 +47,7 @@ export const SlashMenuExt = Extension.create<SlashMenuOptions>({
       TaskItemNode,
       OrderedItemNode,
       OrderedListNode,
+      CodeBlockNode,
     ];
   },
   addProseMirrorPlugins() {
