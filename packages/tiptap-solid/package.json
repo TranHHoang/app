@@ -13,10 +13,10 @@
   "devDependencies": {
     "@tiptap/core": "^2.1.13",
     "@tiptap/pm": "^2.1.13",
-    "solid-js": "^1.8.7",
-    "vite": "^5.0.6",
-    "vite-plugin-dts": "^3.6.4",
-    "vite-plugin-solid": "^2.7.2"
+    "solid-js": "^1.8.8",
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^3.7.0",
+    "vite-plugin-solid": "^2.8.0"
   },
   "peerDependencies": {
     "@tiptap/core": "^2",
